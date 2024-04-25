@@ -31,7 +31,7 @@ const Navbar = () => {
           <Link to="/about" className="flex-grow-0 flex-shrink-0 text-base text-center text-black">About</Link>
           <Link to="/contact" className="flex-grow-0 flex-shrink-0 text-base text-center text-black">Contact US</Link>
             <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative gap-2.5 px-5 py-2.5 rounded-xl bg-[#cdcdcd]">
-            <Link to="/signin" className="flex-grow-0 flex-shrink-0 text-base text-center text-black">
+            <Link to="/login" className="flex-grow-0 flex-shrink-0 text-base text-center text-black">
               Signin
             </Link>
           </div>
