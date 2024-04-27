@@ -12,6 +12,7 @@ import Booking from "./components/Booking";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import AdminDashboard from "./components/AdminDashboard";
+import UserDashboard from "./components/UserDashboard";
 
 const Layout = () => {
   return (
@@ -34,6 +35,7 @@ const router = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "/signup", element: <Signup /> },
       { path: "/admin", element: <AdminDashboard /> },
+      { path: "/user", element: <UserDashboard /> },
     ]
   }
 ]);

@@ -1,7 +1,16 @@
-import React from 'react';
+import React, {  useState } from 'react';
 import CreateEvent from './CreateEvent';
 
-const AdminDashboard = () => {
+const AdminDashboard =  () => {
+ const [user, setUser] = useState(null);
+
+ const userData = localStorage.getItem('user');
+if (userData) {
+  setUser(JSON.parse(userData));
+}
+
+
+  console.log("user", user);
   return (
     <div className="admin-dashboard flex">
       {/* Sidebar */}

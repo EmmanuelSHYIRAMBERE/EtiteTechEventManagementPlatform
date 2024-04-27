@@ -73,7 +73,10 @@ const Home = () => {
       </div>
       <div>
         <h1 className="text-4xl font-bold text-center mb-8">
-          Discover Unforgettable Events with Company Events
+          Discover Unforgettable Events with <b>
+            
+Etite tech 
+          </b>
         </h1>
         <p className="text-lg text-center mb-8">
           Your gateway to immersive experiences, unforgettable memories,

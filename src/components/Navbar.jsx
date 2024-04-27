@@ -4,10 +4,11 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <div className="flex justify-between items-center w-100% relative px-7 py-5 bg-[#f1f1f1]">
-      <p className="flex-grow-0 flex-shrink-0 text-[32px] font-bold text-center text-black">CompanyEvents</p>
+      <p className="flex-grow-0 flex-shrink-0 text-[32px] font-bold text-center text-black">
+Etite tech </p>
       <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 gap-10">
         {/* Search Input */}
-        <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 w-[415px] relative gap-[22px] px-2.5 py-[7px] rounded-[7px] bg-[#cdcdcd] border border-black">
+        <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 w-1/3 relative gap-[22px] px-2.5 py-[7px] rounded-[7px] bg-[#cdcdcd] border border-black">
           <svg
             width={24}
             height={25}
