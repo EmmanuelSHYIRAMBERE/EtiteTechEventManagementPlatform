@@ -8,7 +8,7 @@ const EventList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("https://companyeventmanagement.onrender.com/api/events");
+        const response = await axios.get("https://etitetecheventmanagementplatformbackend.onrender.com/api/events");
         setEvents(response.data);
       } catch (error) {
         console.error("Error fetching events:", error);

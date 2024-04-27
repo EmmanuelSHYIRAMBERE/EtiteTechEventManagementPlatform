@@ -1,32 +1,23 @@
-# React + TypeScript + Vite
+# Etite-Tech Event Management Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a web application for managing events organized by Etite-Tech. The platform enables users to browse upcoming events, book tickets, manage bookings, and provides administrators access to an admin dashboard for event management.
 
-Currently, two official plugins are available:
+# Project Features
+The platform allows users to browse upcoming events, book tickets, and manage their bookings through a user dashboard. Administrators have access to an admin dashboard for event management, including creating, editing, and deleting events, as well as managing bookings. 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Backend API Documentation
+View the API documentation for detailed information on endpoints and data formats.
 
-## Expanding the ESLint configuration
+- [@use this link](https://etitetecheventmanagementplatformbackend.onrender.com/api-docs/#/)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+# API Creadentials
 
-- Configure the top-level `parserOptions` property like this:
+For the admin, you can the following credentials
+  "email": "email@example.com",
+  "password": ************
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+# API Creadentials
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+If you have any questions or encounter any issues while accessing this web application, don't hesitate to reach out for assistance.
 
-<!-- This is a Read Me file -->
+    - email: emashyirambere1@gmail.com

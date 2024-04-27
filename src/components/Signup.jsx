@@ -42,7 +42,7 @@ const Signup = () => {
     e.preventDefault();
     if (validateForm()) {
       try {
-        const response = await axios.post('https://companyeventmanagement.onrender.com/api/users', {
+        const response = await axios.post('https://etitetecheventmanagementplatformbackend.onrender.com/api/users', {
           fullNames,
           email,
           password,

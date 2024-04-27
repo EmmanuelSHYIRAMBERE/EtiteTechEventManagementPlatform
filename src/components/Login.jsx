@@ -1,8 +1,17 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, {  useEffect, useRef, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import useAuth from './hooks/useAuth';
 
 const Login = () => {
+  const {setAuth} = useAuth()
+
+  const navigate = useNavigate()
+  const location = useLocation()
+  const from = location.state?.from?.pathname || '/'
+
+  const userRef = useRef()
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
@@ -26,24 +35,29 @@ const Login = () => {
     e.preventDefault();
     if (validateForm()) {
       try {
-        const response = await axios.post('https://companyeventmanagement.onrender.com/api/auth', {
+        const response = await axios.post('https://etitetecheventmanagementplatformbackend.onrender.com/api/auth', {
           email,
           password,
         });
-        console.log('Login successful:', response.data);
-
+        
         localStorage.setItem('user', JSON.stringify(response.data));
         
-        const { role } = response.data.user;
+        // eslint-disable-next-line no-unsafe-optional-chaining
+        const { role } = response?.data?.user;
+        const userData= response?.data?.user;
+        // eslint-disable-next-line no-unsafe-optional-chaining
+        const { access_token } = response?.data;
+        
+        setAuth({access_token, role, userData, email, password })
 
-
+        
         if (role === 'admin') {
-          window.location.href = '/admin';
+          navigate('/admin');
         } else if (role === 'user') {
-          window.location.href = '/user';
+          navigate(from, { replace: true });
         } else {
-          // Handle other roles or scenarios as needed
-          console.log('Unknown role:', role);
+          alert('Failed to login user');
+          console.log('Failed to login user');
         }
       } catch (error) {
         console.error('Error logging in:', error);
@@ -57,6 +71,10 @@ const Login = () => {
     }
   };
 
+  useEffect(()=>{
+    userRef.current.focus()
+  },[])
+
   return (
     <div className="w-full h-2/3 flex justify-center items-center bg-white">
       <div className="w-96 bg-white rounded-lg shadow-xl overflow-hidden">
@@ -68,10 +86,12 @@ const Login = () => {
               <input
                 type="email"
                 id="email"
+                ref={userRef}
                 className="w-full h-10 px-4 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
                 placeholder="johnsondoe@nomail.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
               />
               {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email}</p>}
             </div>
@@ -84,6 +104,7 @@ const Login = () => {
                 placeholder="********"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                required
               />
               {errors.password && <p className="text-xs text-red-500 mt-1">{errors.password}</p>}
             </div>

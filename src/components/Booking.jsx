@@ -12,7 +12,7 @@ const Booking = () => {
   useEffect(() => {
     const fetchEventData = async () => {
       try {
-        const response = await axios.get(`https://companyeventmanagement.onrender.com/api/events/${eventId}`);
+        const response = await axios.get(`https://etitetecheventmanagementplatformbackend.onrender.com/api/events/${eventId}`);
         setEventData(response.data);
       } catch (error) {
         console.error("Error fetching event data:", error);
@@ -94,7 +94,7 @@ const Booking = () => {
         ticketsBooked: tickets,
         userNumber: phoneNumber,
       };
-      const response = await axios.post(`https://companyeventmanagement.onrender.com/api/bookings/${eventId}`, bookingData);
+      const response = await axios.post(`https://etitetecheventmanagementplatformbackend.onrender.com/api/bookings/${eventId}`, bookingData);
       console.log("Booking confirmed:", response.data);
     } catch (error) {
       console.error("Error confirming booking:", error);

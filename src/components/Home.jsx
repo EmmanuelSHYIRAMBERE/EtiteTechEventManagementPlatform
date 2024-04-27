@@ -9,7 +9,7 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("https://companyeventmanagement.onrender.com/api/events");
+        const response = await axios.get("https://etitetecheventmanagementplatformbackend.onrender.com/api/events");
         setEventsData(response.data);
         // Initially show the first three events
         setDisplayedEvents(response.data.slice(0, 3));

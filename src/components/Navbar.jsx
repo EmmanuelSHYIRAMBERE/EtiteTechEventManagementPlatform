@@ -1,7 +1,26 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "./hooks/useAuth";
 
 const Navbar = () => {
+
+  const user = localStorage.getItem('user')
+  const navigate = useNavigate()
+
+  const {auth} = useAuth()
+  const userRole = auth?.role || JSON.parse(user)?.user?.role;
+
+  console.log("userRole", userRole)
+
+  const handleAccountRedirect = () => {
+  if (userRole === "admin") {
+    navigate("/admin"); 
+  } else if (userRole === "user") {
+    navigate("/user"); 
+  }
+};
+
+
   return (
     <div className="flex justify-between items-center w-100% relative px-7 py-5 bg-[#f1f1f1]">
       <p className="flex-grow-0 flex-shrink-0 text-[32px] font-bold text-center text-black">
@@ -32,14 +51,21 @@ Etite tech </p>
           <Link to="/about" className="flex-grow-0 flex-shrink-0 text-base text-center text-black">About</Link>
           <Link to="/contact" className="flex-grow-0 flex-shrink-0 text-base text-center text-black">Contact US</Link>
             <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative gap-2.5 px-5 py-2.5 rounded-xl bg-[#cdcdcd]">
+            {userRole ? (
+            <button
+              className="flex-grow-0 flex-shrink-0 text-base text-center text-black bg-transparent border-none cursor-pointer"
+              onClick={handleAccountRedirect}
+            >
+              Account
+            </button>
+            )
+          : (
             <Link to="/login" className="flex-grow-0 flex-shrink-0 text-base text-center text-black">
               Signin
             </Link>
+          )}
           </div>
         </div>
-        {/* Sign In Button */}
-        
-        {/* End of Sign In Button */}
       </div>
     </div>
   );
