@@ -3,7 +3,7 @@ const Footer = () => {
     <footer className="bg-gray-900 text-white p-4 mt-8">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <div>
-          <p>Company Name</p>
+          <p>CompanyEvents</p>
           <p>&copy; 2024 All rights reserved</p>
         </div>
         <ul className="flex space-x-4">
