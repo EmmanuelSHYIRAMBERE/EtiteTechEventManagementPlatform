@@ -14,29 +14,33 @@ const UserDashboard = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-4">Your Booked Events</h1>
-      {bookedEvents.length === 0 ? (
-        <p>You have no booked events.</p>
-      ) : (
-        <ul className="space-y-4">
-          {bookedEvents.map((event) => (
-            <li key={event.id} className="bg-white rounded-lg shadow p-4 flex justify-between items-center">
-              <div>
-                <h2 className="text-xl font-bold">{event.title}</h2>
-                <p className="text-gray-600">Date: {event.date}</p>
-                <p className="text-gray-600">Location: {event.location}</p>
-              </div>
-              <button
-                onClick={() => handleCancelBooking(event.id)}
-                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-              >
-                Cancel Booking
-              </button>
-            </li>
+    <div className="main-content flex-grow p-4">
+      {/* Booking table */}
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-xl font-bold">Booking Management</h2>
+      </div>
+      <table className="w-full border-collapse border border-gray-300">
+        <thead>
+          <tr className="bg-gray-200">
+            <th className="border border-gray-300 px-4 py-2">Event Name</th>
+            <th className="border border-gray-300 px-4 py-2">Location</th>
+            <th className="border border-gray-300 px-4 py-2">Date</th>
+            <th className="border border-gray-300 px-4 py-2">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {bookedEvents.map(event => (
+            <tr key={event.id}>
+              <td className="border border-gray-300 px-4 py-2">{event.title}</td>
+              <td className="border border-gray-300 px-4 py-2">{event.location}</td>
+              <td className="border border-gray-300 px-4 py-2">{event.date}</td>
+              <td className="border border-gray-300 px-4 py-2">
+                <button className="text-red-600 hover:text-red-700" onClick={() => handleCancelBooking(event.id)}>Cancel</button>
+              </td>
+            </tr>
           ))}
-        </ul>
-      )}
+        </tbody>
+      </table>
     </div>
   );
 };

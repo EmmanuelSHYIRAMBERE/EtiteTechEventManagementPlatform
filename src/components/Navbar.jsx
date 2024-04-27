@@ -3,28 +3,35 @@ import { Link, useNavigate } from "react-router-dom";
 import useAuth from "./hooks/useAuth";
 
 const Navbar = () => {
-
-  const user = localStorage.getItem('user')
-  const navigate = useNavigate()
-
-  const {auth} = useAuth()
+  const user = localStorage.getItem('user');
+  const navigate = useNavigate();
+  const { auth, setAuth } = useAuth();
   const userRole = auth?.role || JSON.parse(user)?.user?.role;
 
-  console.log("userRole", userRole)
+  console.log("userRole", userRole);
 
-  const handleAccountRedirect = () => {
-  if (userRole === "admin") {
-    navigate("/admin"); 
-  } else if (userRole === "user") {
-    navigate("/user"); 
-  }
-};
+  const handleAccountRedirect = (selectedOption) => {
 
+    console.log("selectedOption",selectedOption)
+
+    if (selectedOption === "profile") {
+      if (userRole === "admin") {
+        navigate("/admin"); 
+      } else if (userRole === "user") {
+        navigate("/user"); 
+      }
+    } else if (selectedOption === "logout") {
+      localStorage.removeItem('user');
+      setAuth({});
+      navigate("/");
+    }
+  };
 
   return (
     <div className="flex justify-between items-center w-100% relative px-7 py-5 bg-[#f1f1f1]">
       <p className="flex-grow-0 flex-shrink-0 text-[32px] font-bold text-center text-black">
-Etite tech </p>
+        Etite tech 
+      </p>
       <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 gap-10">
         {/* Search Input */}
         <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 w-1/3 relative gap-[22px] px-2.5 py-[7px] rounded-[7px] bg-[#cdcdcd] border border-black">
@@ -50,20 +57,19 @@ Etite tech </p>
           <Link to="/events" className="flex-grow-0 flex-shrink-0 text-base text-center text-black">Events</Link>
           <Link to="/about" className="flex-grow-0 flex-shrink-0 text-base text-center text-black">About</Link>
           <Link to="/contact" className="flex-grow-0 flex-shrink-0 text-base text-center text-black">Contact US</Link>
-            <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative gap-2.5 px-5 py-2.5 rounded-xl bg-[#cdcdcd]">
+          <div className="flex justify-center items-center flex-grow-0 flex-shrink-0 relative gap-2.5 px-5 py-2.5 rounded-xl bg-[#cdcdcd]">
             {userRole ? (
-            <button
-              className="flex-grow-0 flex-shrink-0 text-base text-center text-black bg-transparent border-none cursor-pointer"
-              onClick={handleAccountRedirect}
-            >
-              Account
-            </button>
-            )
-          : (
-            <Link to="/login" className="flex-grow-0 flex-shrink-0 text-base text-center text-black">
-              Signin
-            </Link>
-          )}
+              <select
+                className="flex-grow-0 flex-shrink-0 text-base text-center text-black bg-transparent border-none cursor-pointer"
+                onChange={(e) => handleAccountRedirect(e.target.value)}
+              >
+                <option value="default">Account</option>
+                <option value="profile">Dashboard</option>
+                <option value="logout">Logout</option>
+              </select>
+            ) : (
+              <Link to="/login" className="flex-grow-0 flex-shrink-0 text-base text-center text-black">Signin</Link>
+            )}
           </div>
         </div>
       </div>
