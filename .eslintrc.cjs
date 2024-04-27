@@ -16,3 +16,5 @@ module.exports = {
     ],
   },
 }
+
+// This is eslintrc configuration file

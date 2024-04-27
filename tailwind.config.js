@@ -39,3 +39,4 @@ export default {
   },
   plugins: [],
 };
+// This is tailwindcss config file
