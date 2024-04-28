@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import useAuth from "./hooks/useAuth";
 
 const Booking = () => {
   const [eventData, setEventData] = useState(null);
@@ -8,6 +9,12 @@ const Booking = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [errors, setErrors] = useState({});
   const { eventId } = useParams();
+
+  const navigate = useNavigate()
+
+
+  const {auth} = useAuth()
+  const token = auth?.access_token || JSON.parse(localStorage.getItem('user'))?.access_token;
 
   useEffect(() => {
     const fetchEventData = async () => {
@@ -94,8 +101,16 @@ const Booking = () => {
         ticketsBooked: tickets,
         userNumber: phoneNumber,
       };
-      const response = await axios.post(`https://etitetecheventmanagementplatformbackend.onrender.com/api/bookings/${eventId}`, bookingData);
+      const response = await axios.post(`https://etitetecheventmanagementplatformbackend.onrender.com/api/bookings/${eventId}`, bookingData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      
+      alert("Your ticket booking request sent successfully")
+      navigate('/')
       console.log("Booking confirmed:", response.data);
+
     } catch (error) {
       console.error("Error confirming booking:", error);
     }

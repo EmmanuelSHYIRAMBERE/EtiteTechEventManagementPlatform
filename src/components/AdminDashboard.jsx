@@ -14,7 +14,7 @@ const AdminDashboard = () => {
 
 
     const {auth} = useAuth()
-  const token = auth?.access_token
+  const token = auth?.access_token || JSON.parse(localStorage.getItem('user'))?.access_token;
 
   useEffect(() => {
     const fetchData = async () => {
